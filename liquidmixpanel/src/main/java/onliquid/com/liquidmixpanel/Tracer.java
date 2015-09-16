@@ -33,8 +33,8 @@ import io.lqd.sdk.Liquid;
 
 
 @Aspect
-public class MixpanelTracer {
-    private static final String TAG = MixpanelTracer.class.getName();
+public class Tracer {
+    private static final String TAG = Tracer.class.getName();
 
     public static final String TRACK = "call(* com.mixpanel.android.mpmetrics.MixpanelAPI.track(..))";
     public static final String SET_PROP = "call(* com.mixpanel.android.mpmetrics.MixpanelAPI.People.set(..))";

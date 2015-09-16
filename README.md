@@ -3,7 +3,8 @@ Liquid-Mixpanel
 
 Forward mixpanel events to Liquid.
 
-Usage
+
+Install
 -----
 
 Add the plugin to your `buildscript`'s `dependencies` section:
@@ -21,6 +22,17 @@ Add lib dependency
 ```groovy
 dependencies {
   // Your Dependencies
+  compile 'io.lqd:liquid-android:+@aar'
   compile 'com.onliquid:liquid-mixpanel:+@aar'
 }
+```
+
+Usage
+
+Make sure that you initialize Liquid singleton before initializing mixpanel
+
+```java
+Liquid.initialize(this, "LIQUID_TOKEN", true);
+
+mixpanel = MixpanelAPI.getInstance(this, "MIXPANEL_TOKEN");
 ```
