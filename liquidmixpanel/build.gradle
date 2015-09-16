@@ -18,23 +18,11 @@ android {
     }
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.uphyca.gradle:gradle-android-aspectj-plugin:0.9.+'
-    }
-}
-
-apply plugin: 'android-aspectj'
-
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.mixpanel.android:mixpanel-android:4.6.4'
-    compile 'io.lqd:liquid-android:+@aar'
+    compile 'org.aspectj:aspectjrt:1.8.5'
+    compile 'io.lqd:liquid-android:[1,)@aar'
 }
 
 apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
