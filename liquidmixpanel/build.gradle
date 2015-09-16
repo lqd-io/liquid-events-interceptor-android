@@ -20,7 +20,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.mixpanel.android:mixpanel-android:4.6.4'
     compile 'org.aspectj:aspectjrt:1.8.5'
     compile 'io.lqd:liquid-android:[1,)@aar'
 }

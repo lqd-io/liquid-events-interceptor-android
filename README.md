@@ -4,8 +4,7 @@ Liquid-Mixpanel
 Forward mixpanel events to Liquid.
 
 
-Install
------
+ ### Install
 
 Add the plugin to your `buildscript`'s `dependencies` section:
 ```groovy
@@ -27,7 +26,7 @@ dependencies {
 }
 ```
 
-Usage
+### Usage
 
 Make sure that you initialize Liquid singleton before initializing mixpanel
 
