@@ -1,1 +1,1 @@
-include ':app', ':liquidmixpanel', ':liquidlocalytics'
+include ':demo', ':liquidmixpanel', ':liquidlocalytics'

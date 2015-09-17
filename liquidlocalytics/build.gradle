@@ -1,11 +1,11 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "liquidmixpanel.onliquid.com.test"
         minSdkVersion 21
         targetSdkVersion 22
         versionCode 1
@@ -33,12 +33,10 @@ apply plugin: 'android-aspectj'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':liquidlocalytics')
-    //compile project(':liquidmixpanel')
-    compile files('libs/localytics.jar')
-    compile 'io.lqd:liquid-android:+@aar'
-    compile 'com.mixpanel.android:mixpanel-android:4.6.4'
-    compile 'com.android.support:support-v4:22.0.0'
+    compile 'io.lqd:liquid-android:[1,)@aar'
 
-    //compile 'com.onliquid:liquid-mixpanel:0.1'
 }
+
+apply from: '../gradle-maven-push.gradle'
+
+

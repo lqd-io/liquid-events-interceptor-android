@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.localytics.android.Localytics;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-
-import io.lqd.sdk.Liquid;
 
 
 public class MainActivity extends Activity {
@@ -21,48 +20,63 @@ public class MainActivity extends Activity {
 
     MixpanelAPI mixpanel;
     private HashMap<String, Object> mUserProps;
+    private HashMap<String, String> mUserProps2;
     private JSONObject mTrackProps;
+    private boolean mUseLocalytics = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Liquid.initialize(this, "YOUR_LIQUID_TOKEN", true);
-        mixpanel = MixpanelAPI.getInstance(this, "YOUR_MIXPANEL_TOKEN");
+        mUseLocalytics = true;
+
+        mixpanel = MixpanelAPI.getInstance(this, "MIXPANEL_TOKEN");
 
         initTrackProps();
         initUserProps();
+        initUserProps2();
     }
 
     public void track(View v) {
         Log.d(TAG, "VIEW track");
-
-        mixpanel.track("lel");
+        if (mUseLocalytics)
+            Localytics.tagEvent("lel");
+        else
+            mixpanel.track("lel");
     }
 
     public void trackProps(View v) {
         Log.d(TAG, "VIEW track props");
 
-        mixpanel.track("lel2", mTrackProps);
+        if (mUseLocalytics)
+            Localytics.tagEvent("lel", mUserProps2);
+        else
+            mixpanel.track("lel2", mTrackProps);
     }
 
     public void identify(View v) {
         Log.d(TAG, "VIEW identify");
-
-        mixpanel.identify("123");
+        if (mUseLocalytics)
+            Localytics.setCustomerId("123");
+        else
+            mixpanel.identify("123");
     }
 
     public void identifyPeople(View v) {
         Log.d(TAG, "VIEW identify people");
-
-        mixpanel.getPeople().identify("123");
+        if (mUseLocalytics)
+            Localytics.setCustomerId("123");
+        else
+            mixpanel.getPeople().identify("123");
     }
 
     public void setProp(View v) {
         Log.d(TAG, "VIEW set prop");
-
-        mixpanel.getPeople().set("gender", "female");
+        if (mUseLocalytics)
+            Localytics.setProfileAttribute("gender", "female");
+        else
+            mixpanel.getPeople().set("gender", "female");
     }
 
     public void setPropHash(View v) {
@@ -85,5 +99,11 @@ public class MainActivity extends Activity {
         mUserProps = new HashMap<>();
         mUserProps.put("gender", "female");
         mUserProps.put("plan", "premium");
+    }
+
+    private void initUserProps2() {
+        mUserProps2 = new HashMap<>();
+        mUserProps2.put("gender", "female");
+        mUserProps2.put("plan", "premium");
     }
 }
