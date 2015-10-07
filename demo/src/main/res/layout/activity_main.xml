@@ -86,4 +86,14 @@
         android:layout_alignBottom="@+id/set_prop_hash"
         android:layout_alignStart="@+id/identify_people"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="track screen"
+        android:id="@+id/anotherActivity"
+        android:onClick="anotherActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/identify"
+        android:layout_marginBottom="68dp" />
+
 </RelativeLayout>
