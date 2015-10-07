@@ -20,7 +20,7 @@ public class DemoApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        Liquid.initialize(this, "WF2mhts2blNXzZkUCO33poxMz8m1Z--q", true);
+        Liquid.initialize(this, "LLIQUD_TOKEN", true);
 
 
         registerActivityLifecycleCallbacks(new LocalyticsActivityLifecycleCallbacks(this, "LOCALYTICS_TOKEN"));

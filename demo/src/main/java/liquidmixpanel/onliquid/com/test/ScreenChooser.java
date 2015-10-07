@@ -19,6 +19,7 @@ public class ScreenChooser extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_chooser);
+        setTitle("Choose Analytics");
 
         bLocalytics = (Button) findViewById(R.id.localytics);
         bMixPanel   = (Button) findViewById(R.id.mixPanel);

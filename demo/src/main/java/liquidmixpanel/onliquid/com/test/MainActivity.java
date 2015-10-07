@@ -52,6 +52,13 @@ public class MainActivity extends Activity {
         if(choice==1 || choice==2)
             secondScreenButton.setEnabled(false);
 
+        if(choice==1)
+            setTitle("Localytics");
+        else if(choice==2)
+            setTitle("MixPanel");
+        else
+            setTitle("Google Analytics");
+
         mixpanel = MixpanelAPI.getInstance(this, "MIXPANEL_TOKEN");
 
         initTrackProps();
