@@ -1,13 +1,12 @@
 package com.onliquid.liquidgoogleanalytics;
 
-import android.util.Log;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import io.lqd.sdk.Liquid;
 
@@ -30,20 +29,17 @@ public class Interceptor {
     @Before("track()")
     public void onTrack(JoinPoint joinPoint) {
 
-        HashMap ashMap = (HashMap) joinPoint.getArgs()[0];
+        HashMap hash = (HashMap) joinPoint.getArgs()[0];
+        String eventName = hash.get("&ec") + ":" + hash.get("&ea");
 
-        String eventName;
-
-        if (ashMap.containsKey("&el")) {
-            eventName = ashMap.get("&ec") + ":" + ashMap.get("&ea") + ":" + ashMap.get("&el");}
-        else{
-            eventName = ashMap.get("&ec") + ":" + ashMap.get("&ea");
+        if (hash.containsKey("&el")) {
+            eventName = eventName + ":" + hash.get("&el");
         }
 
-        HashMap<String, Object> attributes = new HashMap<>();
+        Map<String, Object> attributes = new HashMap<>();
 
-        if(ashMap.containsKey("&ev")) {
-            attributes.put("value", ashMap.get("&ev"));
+        if(hash.containsKey("&ev")) {
+            attributes.put("value", hash.get("&ev"));
             Liquid.getInstance().track(eventName, attributes);
         }
         else{
@@ -52,22 +48,22 @@ public class Interceptor {
 
     }
 
-
     @Pointcut(IDENTIFY)
-    public void identify(){}
+    public void identify() {
+    }
 
     @Before("identify()")
     public void onIdentify(JoinPoint joinPoint) {
-
         Liquid.getInstance().identifyUser((String) joinPoint.getArgs()[1]);
     }
 
     @Pointcut(SCREENNAME)
-    public void screenname(){}
+    public void screenname() {
+
+    }
 
     @Before("screenname()")
-    public void onScreenName(JoinPoint joinPoint){
-
+    public void onScreenName(JoinPoint joinPoint) {
         Liquid.getInstance().track((String) joinPoint.getArgs()[0]);
     }
 }

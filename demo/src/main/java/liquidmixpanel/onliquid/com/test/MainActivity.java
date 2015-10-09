@@ -38,8 +38,6 @@ public class MainActivity extends Activity {
     private Button secondScreenButton;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +47,7 @@ public class MainActivity extends Activity {
         choice = extras.getInt("choice", 1);
 
         secondScreenButton = (Button) findViewById(R.id.anotherActivity);
-        if(choice==1 || choice==2)
+        if(choice == 1 || choice == 2)
             secondScreenButton.setEnabled(false);
 
         if(choice==1)
@@ -65,8 +63,8 @@ public class MainActivity extends Activity {
         initUserProps();
         initUserProps2();
 
-        gAnalytics=GoogleAnalytics.getInstance(this);
-        gTracker=gAnalytics.newTracker("UA-68307540-7");  //WRITE THE APPID
+        gAnalytics = GoogleAnalytics.getInstance(this);
+        gTracker = gAnalytics.newTracker("GOOGLE_ANALYTICS_ID");  // e.g UA-68307540-7
         gTracker.enableAutoActivityTracking(true);
 
  }
@@ -74,60 +72,62 @@ public class MainActivity extends Activity {
 
     public void track(View v) {
         Log.d(TAG, "VIEW track");
-        if (choice==1)
+        if (choice == 1)
             Localytics.tagEvent("lel");
-        else if(choice==2)
+        else if(choice == 2)
             mixpanel.track("lel");
-        else if(choice==3){
+        else if(choice == 3) {
             gTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Liquids")              //required
                 .setAction("Pumped")                 //required
-                .setLabel("In your blood")         //optional
-                .setValue(0)                        //optional
-                .build());}
+                .setLabel("In your blood")           //optional
+                .setValue(0)                         //optional
+                .build());
+        }
 
     }
 
     public void trackProps(View v) {
         Log.d(TAG, "VIEW track props");
 
-        if (choice==1)
+        if (choice == 1)
             Localytics.tagEvent("lel", mUserProps2);
-        else if(choice==2)
+        else if(choice == 2)
             mixpanel.track("lel2", mTrackProps);
-        else if(choice==3){
+        else if(choice == 3){
             gTracker.send(new HitBuilders.EventBuilder()
                 .setCategory("Liquids")              //required
                 .setAction("Pumped")                 //required
-                .setLabel("In your blood")         //optional
-                .setValue(0)                        //optional
+                .setLabel("In your blood")           //optional
+                .setValue(0)                         //optional
                 .build());}
     }
 
     public void identify(View v) {
         Log.d(TAG, "VIEW identify");
-        if (choice==1)
+        if (choice == 1)
             Localytics.setCustomerId("123");
-        else if(choice==2)
+        else if(choice == 2)
             mixpanel.identify("123");
-        else if(choice==3){
+        else if(choice == 3) {
             gTracker.set("&uid", "999");
-            gTracker.send(new HitBuilders.EventBuilder().setCategory("UX").setAction("User Sign In").build());}
-
+            gTracker.send(new HitBuilders.EventBuilder().setCategory("UX").setAction("User Sign In").build());
+        }
     }
 
     public void identifyPeople(View v) {
         Log.d(TAG, "VIEW identify people");
-         if (choice==1)
+         if (choice == 1)
             Localytics.setCustomerId("123");
-        else if(choice==2)
+        else if(choice == 2)
             mixpanel.getPeople().identify("123");
-        else if(choice==3)
+        else if(choice == 3)
             gTracker.set("&uid", "999");
     }
 
     public void setProp(View v) {
         Log.d(TAG, "VIEW set prop");
+
         if (mUseLocalytics)
             Localytics.setProfileAttribute("gender", "female");
         else
@@ -150,6 +150,7 @@ public class MainActivity extends Activity {
 
     private void initTrackProps() {
         mTrackProps = new JSONObject();
+
         try {
             mTrackProps.put("Gender", "Female");
             mTrackProps.put("Plan", "Premium");
@@ -169,7 +170,4 @@ public class MainActivity extends Activity {
         mUserProps2.put("gender", "female");
         mUserProps2.put("plan", "premium");
     }
-
-
-
 }
