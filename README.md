@@ -5,7 +5,9 @@ Mixpanel [![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/l
 
 Localytics [![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/liquid-localytics.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22liquid-localytics%22)
 
-Quick way to integrate Liquid basic analytics using your current mixpanel/localytics integration.
+Google Analytics [![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/liquid-googleanalytics.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22liquid-googleanalytics%22)
+
+Quick way to integrate Liquid basic analytics using your current mixpanel/localytics/google analytics integration.
 
 
 
@@ -60,6 +62,21 @@ registerActivityLifecycleCallbacks(
   new LocalyticsActivityLifecycleCallbacks(this, "LOCALYTICS_TOKEN")
 );
 ```
+
+
+#### Google Analytics
+1. Add Google Analytics dependency:
+```groovy
+compile 'com.onliquid:liquid-googleanalytics:+@aar'
+```
+
+2. Make sure that you initialize Liquid singleton before send data to google analytics
+
+```java
+Liquid.initialize(this, "LIQUID_TOKEN", true);
+```
+
+
 
 ### Full integration
 
