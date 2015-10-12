@@ -1,11 +1,11 @@
 Liquid Events Interceptor
 ==================
 
-Mixpanel [![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/liquid-mixpanel.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22liquid-mixpanel%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/liquid-mixpanel.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22liquid-mixpanel%22) Mixpanel
 
-Localytics [![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/liquid-localytics.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22liquid-localytics%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/liquid-localytics.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22liquid-localytics%22) Localytics
 
-Google Analytics [![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/liquid-googleanalytics.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22liquid-googleanalytics%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.onliquid/liquid-googleanalytics.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22liquid-googleanalytics%22) Google Analytics
 
 Quick way to integrate Liquid basic analytics using your current mixpanel/localytics/google analytics integration.
 
